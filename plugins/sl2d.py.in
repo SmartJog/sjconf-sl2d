@@ -35,8 +35,14 @@ class Plugin(sjconf.PluginWithTemplate):
     def conf_files_path(self):
         return (self.sjconf.etc_dir + '/sl2d.conf',)
 
+    def dependencies(self):
+        return (sjconf.Plugin.Dependency(self, 'ffserver', optional = False, requirements = {'>=' : '0.0.2', '<' : '1'}),)
+
     def services_to_restart(self):
         return ('stream_loader2',)
+
+    def set_plugins(self, plugins):
+        self.ffserver_plugin = plugins['ffserver']
 
     def file_content(self, file_path):
 
@@ -55,10 +61,10 @@ class Plugin(sjconf.PluginWithTemplate):
 
     def push_setting(self, section_name, setting):
 
-        if not section_name in self.conf:
-            raise Plugin.MissingSectionError(push)
-        if not setting in self.conf[section_name]:
-            raise Plugin.MissingSettingError(push, setting)
+        if section_name not in self.conf:
+            raise Plugin.MissingSectionError(section_name)
+        if setting not in self.conf[section_name]:
+            raise Plugin.MissingOptionError(section_name, setting)
         return self.conf[section_name][setting]
 
     def _sl2d_push_section(self, name, section):
@@ -66,14 +72,16 @@ class Plugin(sjconf.PluginWithTemplate):
         section_name = 'sl2d:push:' + name
         content = '\n[%s]\n' % section_name
 
-        # Print mandatory values
-        setting = self.push_setting(section_name, 'source')
-        content += "url-in = %s\n" % setting
-        content += self._sl2d_extra_section(setting, section_name)
+        # Convert and print mandatory url value
+        for (conv, orig) in [('url-in', 'source'), ('url-out', 'target')]:
+            setting = self.push_setting(section_name, orig)
+            if setting.startswith("ffserver"):
+                content += "%s = http://localhost:%s/%s\n" % (conv,
+                    self.ffserver_plugin.conf['ffserver']['port'], setting.split(':')[2])
+            else:
+                content += "%s = %s\n" % (conv, self.push_setting(setting, 'url'))
 
-        setting = self.push_setting(section_name, 'target')
-        content += "url-out = %s\n" % setting
-        content += self._sl2d_extra_section(setting, section_name)
+            content += self._sl2d_extra_section(setting, section_name)
 
         for (key, value) in section.iteritems():
             if key in ['source', 'target']:
@@ -85,14 +93,17 @@ class Plugin(sjconf.PluginWithTemplate):
 
     def _sl2d_extra_section(self, section_name, main_section):
 
-        if not section_name in self.conf:
+        content = ''
+        if section_name in self.conf:
+            section = self.conf[section_name]
+        elif section_name in self.ffserver_plugin.conf:
+            section = self.ffserver_plugin.conf[section_name]
+        else:
             raise Plugin.MissingSectionError(section_name)
 
-        content = ''
-        for (key,value) in self.conf[section_name].iteritems():
+        for (key,value) in section.iteritems():
             if key == 'url' or key in self.conf[main_section].keys():
                 continue
-
             content += "%s = %s\n" % (key, value)
 
         return content
