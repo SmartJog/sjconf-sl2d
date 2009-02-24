@@ -1,0 +1,98 @@
+# -*- coding: utf-8 -*-
+
+import sjconf
+import re
+
+class Plugin(sjconf.PluginWithTemplate):
+
+    VERSION = '@PACKAGE_VERSION@'
+
+    SUBSECTION = [ 'source', 'target', 'push' ]
+
+    class Error(sjconf.Plugin.Error):
+        pass
+
+    class SectionNameInvalid(Error):
+        def __init__(self, type):
+            self.msg = 'The section name "%s" does not match source or target or push' % (type)
+
+    class MissingSectionError(Error):
+        def __init__(self, section_name):
+            self.msg = 'The section "%s" is missing in sjconf' % (section_name)
+
+    class MissingOptionError(Error):
+        def __init__(self, push_name, *missing_options):
+            self.msg = 'The push section "%s" does not have the mandatory option(s) "%s"' % (push_name, '","'.join(missing_options))
+
+    class ConfSection(sjconf.Conf.ConfSection):
+        def __getitem__(self, key):
+            if key == 'daemon':
+                value = (self['daemon_bool'] and '# NoDaemon') or 'NoDaemon'
+            else:
+                value = sjconf.Conf.ConfSection.__getitem__(self, key)
+            return value
+
+    def conf_files_path(self):
+        return (self.sjconf.etc_dir + '/sl2d.conf',)
+
+    def services_to_restart(self):
+        return ('stream_loader2',)
+
+    def file_content(self, file_path):
+
+        content = ''
+
+        # push should be defined even if empty
+        if 'push' not in self.conf['sl2d']:
+            raise Plugin.MissingSettingError('sl2d', 'push')
+
+        # walk through push sections
+        for name in self.conf['sl2d']['push'].split(','):
+            norm_name = name.lstrip().rstrip()
+            content += self._sl2d_push_section(norm_name, self.conf['sl2d:push:' + norm_name])
+
+        return content
+
+    def push_setting(self, section_name, setting):
+
+        if not section_name in self.conf:
+            raise Plugin.MissingSectionError(push)
+        if not setting in self.conf[section_name]:
+            raise Plugin.MissingSettingError(push, setting)
+        return self.conf[section_name][setting]
+
+    def _sl2d_push_section(self, name, section):
+
+        section_name = 'sl2d:push:' + name
+        content = '\n[%s]\n' % section_name
+
+        # Print mandatory values
+        setting = self.push_setting(section_name, 'source')
+        content += "url-in = %s\n" % setting
+        content += self._sl2d_extra_section(setting, section_name)
+
+        setting = self.push_setting(section_name, 'target')
+        content += "url-out = %s\n" % setting
+        content += self._sl2d_extra_section(setting, section_name)
+
+        for (key, value) in section.iteritems():
+            if key in ['source', 'target']:
+                continue
+
+            content += "%s = %s\n" % (key, value)
+
+        return content
+
+    def _sl2d_extra_section(self, section_name, main_section):
+
+        if not section_name in self.conf:
+            raise Plugin.MissingSectionError(section_name)
+
+        content = ''
+        for (key,value) in self.conf[section_name].iteritems():
+            if key == 'url' or key in self.conf[main_section].keys():
+                continue
+
+            content += "%s = %s\n" % (key, value)
+
+        return content

@@ -1,0 +1,16 @@
+#!/bin/sh
+set -e
+
+#DEBHELPER#
+
+PLUGINS="sl2d"
+
+for plugin in $PLUGINS
+do
+	if ! sjconf --list-plugins | grep "^Plugin $plugin$" > /dev/null
+	then
+		sjconf --install-conf --link /etc/sjconf-sl2d/confs/$plugin.conf
+		sjconf --install-plugin --link /usr/lib/sjconf-sl2d/plugins/$plugin.py
+		sjconf --enable-plugin $plugin
+	fi
+done

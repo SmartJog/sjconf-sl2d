@@ -1,0 +1,27 @@
+SJCONF-sl2d
+sjconf-sj2
+%%mtime
+
+%!target : man
+%!encoding : utf-8
+%!postproc(man): "^(\.TH.*) 1 "  "\1 8 "
+
+= NAME =
+
+sjconf-sl2d - handle **sl2d**(1) configuration through **sjconf**(8)
+
+= DESCRIPTION =
+
+sjconf is a configuration wrapper that handles global and server specific
+configuration, deployment and service restart.
+
+The sl2d plugin allows for handling the **sl2d**(1) file.
+
+= AUTHOR =
+
+The sjconf sl2d plugin and this manual page have been written by the **SmartJog** company.
+
+= SEE ALSO =
+
+**sjconf**(8), **sl2d**(1).
+

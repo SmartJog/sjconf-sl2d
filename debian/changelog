@@ -1,0 +1,5 @@
+sjconf-sl2d (0.1.0~dev-1) unstable; urgency=low
+
+  * Initial release. (Closes: #1475)
+
+ -- Gilles Dartiguelongue <gdartigu@smartjog.com>  Tue, 06 Jan 2009 17:42:20 +0100
