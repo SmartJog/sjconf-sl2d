@@ -52,11 +52,14 @@ class Plugin(sjconf.PluginWithTemplate):
 
     def file_content(self, file_path):
 
-        content = ''
+        content = '[sl2d]\n'
 
-        # push should be defined even if empty
-        if 'push' not in self.conf['sl2d']:
-            raise Plugin.MissingSettingError('sl2d', 'push')
+        # some settings should always be defined
+        for setting in ['push', 'main_loop_delay', 'respawn_min_delay']:
+            if setting not in self.conf['sl2d']:
+                raise Plugin.MissingSettingError('sl2d', 'push')
+            else:
+                content += "%s = %s\n" % (setting, self.conf['sl2d'][setting])
 
         # walk through push sections
         for name in self.conf['sl2d']['push'].split(','):
