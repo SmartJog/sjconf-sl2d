@@ -16,8 +16,8 @@ class Plugin(sjconf.PluginWithTemplate):
             self.msg = 'The setting "%s" in section "%s" does not match any valid value' % (setting, section)
 
     class SectionNameInvalid(Error):
-        def __init__(self, type):
-            self.msg = 'The section name "%s" does not match source or target or push' % (type)
+        def __init__(self, section_name):
+            self.msg = 'The section name "%s" does not match source or target or push' % (section_name)
 
     class MissingSectionError(Error):
         def __init__(self, section_name):
@@ -57,7 +57,7 @@ class Plugin(sjconf.PluginWithTemplate):
         # some settings should always be defined
         for setting in ['push', 'main_loop_delay', 'respawn_min_delay']:
             if setting not in self.conf['sl2d']:
-                raise Plugin.MissingSettingError('sl2d', 'push')
+                raise Plugin.MissingOptionError('sl2d', 'push')
             else:
                 content += "%s = %s\n" % (setting, self.conf['sl2d'][setting])
 
@@ -124,7 +124,7 @@ class Plugin(sjconf.PluginWithTemplate):
         else:
             raise Plugin.MissingSectionError(section_name)
 
-        for (key,value) in section.iteritems():
+        for (key, value) in section.iteritems():
             if transcode == 'mix':
                 if key == 'url' or key in self.conf[main_section].keys():
                     continue
