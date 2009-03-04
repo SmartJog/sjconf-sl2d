@@ -17,11 +17,51 @@ configuration, deployment and service restart.
 
 The sl2d plugin allows for handling the **sl2d**(1) file.
 
+The plugin allows one **[sl2d]** section and multiple sections of the form
+**[sl2d:(source|target|push):name]**.
+
+Section **sl2d** can hold any of the following options:
+
+:    **push**, **main_loop_delay**, **respawn_min_delay**.
+See **sl2d**(8) man page for a description of these options.
+
+
+Section **sl2d:push:** needs the following options:
+
+:    **source**, **target** = //full_section_name//
+Need to match a **sl2d:source:**, respectively **sl2d:target:**, section name.
+It can also refer to a **sjconf-ffserver** feed or stream section. In this case,
+the URL used later on by **sl2d** will be guessed from **ffserver**
+configuration.
+
+:    **transcode** = //(none|target|push|mix)//
+Should the push be transcoded. //none// means no transcode at all will be
+performed. //target// means that specifications of the target stream will be
+used perform the transcode. //push// means that parameters for the transcode are
+described in the push section. //mix// means that parameters from the target and
+push sections will be mixed to create the final set of transcode parameters. In
+this last case, parameters in the push section have priority over those defined
+in the target section.
+
+
+Section **sl2d:source:** and **sl2d:target:** need a **url** parameter which is
+a fully qualified URL, even for local path.
+
+= OPTIONS =
+
+Section **sl2d:push:** and **sl2d:target:** can hold any options supported by
+the **sjconf-ffserver** plugin for transcoding.
+
+In addition it also supports the following options:
+:    **format**, **flags**, **flags2**, **partitions**, **coder**, **refs**, **threads**, **video_macroblock_decision**, **video_macroblock_l_max**, **video_l_max**, **video_q_comp**, **video_q_diff**, **video_b_frames**, **video_b_strategy**, **video_i_q_factor**, **video_sc_threshold**, **video_direct_pred**, **video_me_method**, **video_me_range**, **video_cmp**, **video_sub_q**, **video_keyint_min**, **video_sync_method**, **video_trellis**, **video_crop_left**, **video_crop_right**, **video_crop_top**, **video_crop_bottom**, **audio_sync_method**, **video_copy_timestamps**
+See **ffmpeg** man page.
+
+
 = AUTHOR =
 
 The sjconf sl2d plugin and this manual page have been written by the **SmartJog** company.
 
 = SEE ALSO =
 
-**sjconf**(8), **sl2d**(1).
+**sjconf**(8), **sjconf-ffserver**(8), **ffmpeg**(1), **sl2d**(1).
 
