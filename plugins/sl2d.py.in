@@ -62,9 +62,8 @@ class Plugin(sjconf.PluginWithTemplate):
                 content += "%s = %s\n" % (setting, self.conf['sl2d'][setting])
 
         # walk through push sections
-        for name in self.conf['sl2d']['push'].split(','):
-            norm_name = name.lstrip().rstrip()
-            content += self._sl2d_push_section(norm_name, self.conf['sl2d:push:' + norm_name])
+        for name in [name.lstrip().rstrip() for name in self.conf['sl2d']['push'].split(',') if name.lstrip().rstrip()]:
+            content += self._sl2d_push_section(name, self.conf['sl2d:push:' + name])
 
         return content
 
