@@ -57,7 +57,7 @@ class Plugin(sjconf.PluginWithTemplate):
         # some settings should always be defined
         for setting in ['push', 'main_loop_delay', 'respawn_min_delay']:
             if setting not in self.conf['sl2d']:
-                raise Plugin.MissingOptionError('sl2d', 'push')
+                raise Plugin.MissingOptionError('sl2d', setting)
             else:
                 content += "%s = %s\n" % (setting, self.conf['sl2d'][setting])
 
