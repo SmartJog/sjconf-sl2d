@@ -1,3 +1,9 @@
+sjconf-sl2d (0.1.1-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Gilles Dartiguelongue <gdartigu@smartjog.com>  Fri, 20 Mar 2009 17:27:06 +0100
+
 sjconf-sl2d (0.1.0-1) unstable; urgency=low
 
   * Initial release. (Closes: #1475)

@@ -44,6 +44,11 @@ this last case, parameters in the push section have priority over those defined
 in the target section.
 
 
+Section **sld2:push:** can hold optional parameters to start commands prior to
+the execution of the process handling the stream or after it died. Those options
+are of the form **precommand-[0-9]+** and **postcommand-[0-9]+**.
+
+
 Section **sl2d:source:** and **sl2d:target:** need a **url** parameter which is
 a fully qualified URL, even for local path.
 
