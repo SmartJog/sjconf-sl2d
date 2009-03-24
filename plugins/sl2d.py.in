@@ -42,7 +42,7 @@ class Plugin(sjconf.PluginWithTemplate):
         return (sjconf.Plugin.Dependency(self, 'ffserver', optional = False, requirements = {'>' : '0.0.2', '<' : '1'}),)
 
     def services_to_restart(self):
-        return ('stream_loader2',)
+        return ('sl2d',)
 
     def set_plugins(self, plugins):
         self.ffserver_plugin   = plugins['ffserver']
