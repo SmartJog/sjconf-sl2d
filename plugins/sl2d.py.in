@@ -102,9 +102,9 @@ class Plugin(sjconf.PluginWithTemplate):
         # FIXME: this is ugly but should be temporary
         try:
             i = 0
-            while true:
+            while True:
                 setting = self.push_setting(section_name, 'precommand-%d' % i)
-                content += "%s = %s\n" % ('precommand-%d', setting)
+                content += "%s = %s\n" % ('precommand-%d' % i, setting)
                 i = i+1
         except Plugin.MissingOptionError:
             # No precommand, this is not fatal
@@ -112,9 +112,9 @@ class Plugin(sjconf.PluginWithTemplate):
 
         try:
             i = 0
-            while true:
+            while True:
                 setting = self.push_setting(section_name, 'postcommand-%d' % i)
-                content += "%s = %s\n" % ('postcommand-%d', setting)
+                content += "%s = %s\n" % ('postcommand-%d' % i, setting)
                 i = i+1
         except Plugin.MissingOptionError:
             # No postcommand, this is not fatal
