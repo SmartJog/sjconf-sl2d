@@ -1,6 +1,7 @@
 Version 0.1.3~dev
 
 	* Read pre/post commands in sequence, starting at 1, refs: #1810.
+	* Do not print pre/post commands twice.
 
 Version 0.1.2 Released on 2009/03/24
 

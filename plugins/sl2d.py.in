@@ -128,7 +128,7 @@ class Plugin(sjconf.PluginWithTemplate):
 
         # here: transcode == push
         for (key, value) in section.iteritems():
-            if key in ['source', 'target']:
+            if key in ['source', 'target'] or key.startswith('precommand') or key.startswith('postcommand'):
                 continue
 
             content += "%s = %s\n" % (key, value)
@@ -152,6 +152,8 @@ class Plugin(sjconf.PluginWithTemplate):
             elif transcode == 'target':
                 if key == 'url':
                     continue
+            elif key.startswith('precommand') or key.startswith('postcommand'):
+                continue
             else:
                 continue
             content += "%s = %s\n" % (key, value)
