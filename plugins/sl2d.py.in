@@ -101,7 +101,7 @@ class Plugin(sjconf.PluginWithTemplate):
         # Extract pre/post commands if any
         # FIXME: this is ugly but should be temporary
         try:
-            i = 0
+            i = 1
             while True:
                 setting = self.push_setting(section_name, 'precommand-%d' % i)
                 content += "%s = %s\n" % ('precommand-%d' % i, setting)
@@ -111,7 +111,7 @@ class Plugin(sjconf.PluginWithTemplate):
             pass
 
         try:
-            i = 0
+            i = 1
             while True:
                 setting = self.push_setting(section_name, 'postcommand-%d' % i)
                 content += "%s = %s\n" % ('postcommand-%d' % i, setting)
