@@ -30,7 +30,7 @@ class Plugin(sjconf.PluginWithTemplate):
     class ConfSection(sjconf.Conf.ConfSection):
         def __getitem__(self, key):
             if key == 'daemon':
-                value = (self['daemon_bool'] and '# NoDaemon') or 'NoDaemon'
+                value = (self['daemon_bool'] and '# NoDaemon') or 'NoDaemon'
             else:
                 value = sjconf.Conf.ConfSection.__getitem__(self, key)
             return value
@@ -99,7 +99,7 @@ class Plugin(sjconf.PluginWithTemplate):
             content += self._sl2d_extra_section(setting, section_name, transcode)
 
         # Extract pre/post commands if any
-        # FIXME: this is ugly but should be temporary
+        # FIXME: this is ugly but should be temporary
         try:
             i = 0
             while True:
@@ -107,7 +107,7 @@ class Plugin(sjconf.PluginWithTemplate):
                 content += "%s = %s\n" % ('precommand-%d' % i, setting)
                 i = i+1
         except Plugin.MissingOptionError:
-            # No precommand, this is not fatal
+            # No precommand, this is not fatal
             pass
 
         try:
@@ -117,7 +117,7 @@ class Plugin(sjconf.PluginWithTemplate):
                 content += "%s = %s\n" % ('postcommand-%d' % i, setting)
                 i = i+1
         except Plugin.MissingOptionError:
-            # No postcommand, this is not fatal
+            # No postcommand, this is not fatal
             pass
 
         if transcode == 'none':
