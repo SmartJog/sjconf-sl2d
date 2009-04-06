@@ -34,14 +34,11 @@ It can also refer to a **sjconf-ffserver** feed or stream section. In this case,
 the URL used later on by **sl2d** will be guessed from **ffserver**
 configuration.
 
-:    **transcode** = //(none|target|push|mix)//
+:    **transcode** = //none// or //full_section_name//
 Should the push be transcoded. //none// means no transcode at all will be
-performed. //target// means that specifications of the target stream will be
-used perform the transcode. //push// means that parameters for the transcode are
-described in the push section. //mix// means that parameters from the target and
-push sections will be mixed to create the final set of transcode parameters. In
-this last case, parameters in the push section have priority over those defined
-in the target section.
+performed. If you specify a section name, it will be used as a base for
+transcoding settings but parameters in the push section have priority over those defined
+in the section pointed to by transcode.
 
 
 Section **sld2:push:** can hold optional parameters to start commands prior to

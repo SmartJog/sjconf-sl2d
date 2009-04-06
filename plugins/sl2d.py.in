@@ -81,8 +81,8 @@ class Plugin(sjconf.PluginWithTemplate):
         content = '\n[%s]\n' % section_name
         transcode = self.push_setting(section_name, 'transcode')
 
-        if transcode not in ['none', 'target', 'mix', 'push']:
-            raise Plugin.SettingValueInvalid('transcode', section_name)
+        if transcode != 'none' and transcode not in self.conf:
+            raise Plugin.MissingSectionError(transcode)
 
         # Convert and print mandatory url value
         for (conv, orig) in [('url-in', 'source'), ('url-out', 'target')]:
@@ -95,8 +95,6 @@ class Plugin(sjconf.PluginWithTemplate):
                     setting.split(':')[2])
             else:
                 content += "%s = %s\n" % (conv, self.push_setting(setting, 'url'))
-
-            content += self._sl2d_extra_section(setting, section_name, transcode)
 
         # Extract pre/post commands if any
         # FIXME: this is ugly but should be temporary
@@ -123,19 +121,20 @@ class Plugin(sjconf.PluginWithTemplate):
         if transcode == 'none':
             content += "video_codec = copy\naudio_codec = copy\nvideo_copy_timestamps = yes\n"
             return content
-        elif transcode == 'target':
-            return content
+        else:
+            content += self._sl2d_extra_section(transcode, section_name)
 
-        # here: transcode == push
+
+        # Get transcode parameters from the push section
         for (key, value) in section.iteritems():
-            if key in ['source', 'target'] or key.startswith('precommand') or key.startswith('postcommand'):
+            if key in ['source', 'target', 'transcode'] or key.startswith('precommand') or key.startswith('postcommand'):
                 continue
 
             content += "%s = %s\n" % (key, value)
 
         return content
 
-    def _sl2d_extra_section(self, section_name, main_section, transcode='none'):
+    def _sl2d_extra_section(self, section_name, main_section):
 
         content = ''
         if section_name in self.conf:
@@ -146,16 +145,11 @@ class Plugin(sjconf.PluginWithTemplate):
             raise Plugin.MissingSectionError(section_name)
 
         for (key, value) in section.iteritems():
-            if transcode == 'mix':
-                if key == 'url' or key in self.conf[main_section].keys():
-                    continue
-            elif transcode == 'target':
-                if key == 'url':
-                    continue
+            if key == 'url' or key in self.conf[main_section].keys():
+                continue
             elif key.startswith('precommand') or key.startswith('postcommand'):
                 continue
             else:
-                continue
-            content += "%s = %s\n" % (key, value)
+                content += "%s = %s\n" % (key, value)
 
         return content
