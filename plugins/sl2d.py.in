@@ -79,10 +79,13 @@ class Plugin(sjconf.PluginWithTemplate):
 
         section_name = 'sl2d:push:' + name
         content = '\n[%s]\n' % section_name
+        binary = self.push_setting(section_name, 'binary')
         transcode = self.push_setting(section_name, 'transcode')
 
         if transcode != 'none' and transcode not in self.conf:
             raise Plugin.MissingSectionError(transcode)
+
+        content += "binary = %s\n" % binary
 
         # Convert and print mandatory url value
         for (conv, orig) in [('url-in', 'source'), ('url-out', 'target')]:
@@ -127,7 +130,7 @@ class Plugin(sjconf.PluginWithTemplate):
 
         # Get transcode parameters from the push section
         for (key, value) in section.iteritems():
-            if key in ['source', 'target', 'transcode'] or key.startswith('precommand') or key.startswith('postcommand'):
+            if key in ['source', 'target', 'transcode', 'binary'] or key.startswith('precommand') or key.startswith('postcommand'):
                 continue
 
             content += "%s = %s\n" % (key, value)

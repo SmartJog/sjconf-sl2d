@@ -1,3 +1,7 @@
+Version 0.1.4~dev
+
+	* Support binary option in sl2d > 0.2.1, refs: #1847.
+
 Version 0.1.3 Released on 2009/04/09
 
 	* Read pre/post commands in sequence, starting at 1, refs: #1810.
