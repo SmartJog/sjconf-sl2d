@@ -40,6 +40,9 @@ performed. If you specify a section name, it will be used as a base for
 transcoding settings but parameters in the push section have priority over those defined
 in the section pointed to by transcode.
 
+:    **binary** = //ffmpeg//
+Path or name of the binary to pass to sl2d.
+
 
 Section **sld2:push:** can hold optional parameters to start commands prior to
 the execution of the process handling the stream or after it died. Those options
