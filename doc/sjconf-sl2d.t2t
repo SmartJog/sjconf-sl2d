@@ -40,6 +40,11 @@ performed. If you specify a section name, it will be used as a base for
 transcoding settings but parameters in the push section have priority over those defined
 in the section pointed to by transcode.
 
+:    **preset** = //none// or //preset_name//
+If the push is going to be transcoded, a preset can be defined as a base onto
+which transcode and push settings will have priority. The value is ignore if
+**transcode** is set to //none//.
+
 :    **binary** = //ffmpeg//
 Path or name of the binary to pass to sl2d.
 
