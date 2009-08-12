@@ -1,3 +1,7 @@
+Version 0.2.0~dev
+
+	* Use strip instead of lstrip+rstrip.
+
 Version 0.1.4 Released on 2009/05/04
 
 	* Support binary option in sl2d > 0.2.1, refs: #1847.
