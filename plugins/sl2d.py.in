@@ -81,9 +81,13 @@ class Plugin(sjconf.PluginWithTemplate):
         content = '\n[%s]\n' % section_name
         binary = self.push_setting(section_name, 'binary')
         transcode = self.push_setting(section_name, 'transcode')
+        preset = self.push_setting(section_name, 'preset')
 
         if transcode != 'none' and transcode not in self.conf:
             raise Plugin.MissingSectionError(transcode)
+
+        if preset != 'none' and preset not in self.conf:
+            raise Plugin.MissingSectionError(preset)
 
         content += "binary = %s\n" % binary
 
@@ -125,8 +129,9 @@ class Plugin(sjconf.PluginWithTemplate):
             content += "video_codec = copy\naudio_codec = copy\nvideo_copy_timestamps = yes\n"
             return content
         else:
-            content += self._sl2d_extra_section(transcode, section_name)
-
+            if preset != 'none':
+                content += self._sl2d_extra_section('sl2d:preset:' + preset, [section_name, transcode])
+            content += self._sl2d_extra_section(transcode, [section_name])
 
         # Get transcode parameters from the push section
         for (key, value) in section.iteritems():
@@ -137,9 +142,19 @@ class Plugin(sjconf.PluginWithTemplate):
 
         return content
 
-    def _sl2d_extra_section(self, section_name, main_section):
+    def _sl2d_extra_section(self, section_name, section_list):
+        """ Print parameters which are not in sections listed elsewhere.
+
+        @section_name: name of the section to print the parameters of.
+        @section_list: list of sections whose parameters should not be
+                       overwritten.
+        """
 
         content = ''
+        already_set_keys = []
+        for section in section_list:
+            already_set_keys.append(self.conf[section].keys())
+
         if section_name in self.conf:
             section = self.conf[section_name]
         elif section_name in self.ffserver_sections:
@@ -148,7 +163,7 @@ class Plugin(sjconf.PluginWithTemplate):
             raise Plugin.MissingSectionError(section_name)
 
         for (key, value) in section.iteritems():
-            if key == 'url' or key in self.conf[main_section].keys():
+            if key == 'url' or key in already_set_keys:
                 continue
             elif key.startswith('precommand') or key.startswith('postcommand'):
                 continue

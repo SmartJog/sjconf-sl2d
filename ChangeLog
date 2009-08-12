@@ -1,6 +1,7 @@
 Version 0.2.0~dev
 
 	* Use strip instead of lstrip+rstrip.
+	* Add support for preset settings.
 
 Version 0.1.4 Released on 2009/05/04
 
