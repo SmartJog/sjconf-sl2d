@@ -81,6 +81,11 @@ class Plugin(sjconf.PluginWithTemplate):
         content = '\n[%s]\n' % section_name
         binary = self.push_setting(section_name, 'binary')
         transcode = self.push_setting(section_name, 'transcode')
+        try:
+            video_copy_timestamps = self.push_setting(section_name, 'video_copy_timestamps')
+        except:
+            video_copy_timestamps = 'yes'
+
         preset = self.push_setting(section_name, 'preset')
 
         if transcode != 'none' and transcode not in self.conf:
@@ -126,7 +131,7 @@ class Plugin(sjconf.PluginWithTemplate):
             pass
 
         if transcode == 'none':
-            content += "video_codec = copy\naudio_codec = copy\nvideo_copy_timestamps = yes\n"
+            content += "video_codec = copy\naudio_codec = copy\nvideo_copy_timestamps = " + video_copy_timestamps + "\n"
             return content
         else:
             if preset != 'none':

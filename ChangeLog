@@ -1,5 +1,6 @@
 Version 0.2.0~dev
 
+	* Allow configuring video_copy_timestamps when transcode=none, closes:#2266
 	* Use strip instead of lstrip+rstrip.
 	* Add support for preset settings.
 
