@@ -1,4 +1,4 @@
-sjconf-sl2d (0.2.0~dev-1) unstable; urgency=low
+sjconf-sl2d (0.2.0-1) unstable; urgency=low
 
   [ Gilles Dartiguelongue ]
   * New upstream release.
@@ -6,7 +6,7 @@ sjconf-sl2d (0.2.0~dev-1) unstable; urgency=low
   [ Nicolas Noirbent ]
   * Added myself to Uploaders.
 
- -- Nicolas Noirbent <nicolas.noirbent@smartjog.com>  Mon, 24 Aug 2009 14:47:05 +0200
+ -- Nicolas Noirbent <nicolas.noirbent@smartjog.com>  Mon, 24 Aug 2009 14:47:57 +0200
 
 sjconf-sl2d (0.1.4-1) unstable; urgency=low
 
