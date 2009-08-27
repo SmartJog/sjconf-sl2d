@@ -1,8 +1,8 @@
-sjconf-sl2d (0.2.1~dev-1) unstable; urgency=low
+sjconf-sl2d (0.2.1-1) unstable; urgency=low
 
   * New upstream release.
 
- -- Nicolas Noirbent <nicolas.noirbent@smartjog.com>  Thu, 27 Aug 2009 15:32:06 +0200
+ -- Nicolas Noirbent <nicolas.noirbent@smartjog.com>  Thu, 27 Aug 2009 15:36:20 +0200
 
 sjconf-sl2d (0.2.0-1) unstable; urgency=low
 

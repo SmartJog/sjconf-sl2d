@@ -1,5 +1,5 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT(sjconf-sl2d, 0.2.1~dev)
+AC_INIT(sjconf-sl2d, 0.2.1)
 
 dnl 2.59 is needed for AS_HELP_STRING
 AC_PREREQ(2.59)
