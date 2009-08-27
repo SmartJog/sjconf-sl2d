@@ -1,3 +1,7 @@
+Version 0.2.1~dev
+
+	* Added a services_to_reload() method, closes: #2296.
+
 Version 0.2.0 Released on 2009/08/24
 
 	* Allow configuring video_copy_timestamps when transcode=none, closes:#2266

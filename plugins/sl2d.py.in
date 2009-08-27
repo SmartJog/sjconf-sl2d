@@ -44,6 +44,9 @@ class Plugin(sjconf.PluginWithTemplate):
     def services_to_restart(self):
         return ('sl2d',)
 
+    def services_to_reload(self):
+        return ('sl2d',)
+
     def set_plugins(self, plugins):
         self.ffserver_plugin   = plugins['ffserver']
         self.ffserver_sections = self.ffserver_plugin.interface_subsection_get_list()
