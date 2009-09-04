@@ -1,3 +1,7 @@
+Version 0.2.2~dev
+
+	* Updated default sl2d configuration, refs: #2246.
+
 Version 0.2.1 Released on 2009/08/27
 
 	* Added a services_to_reload() method, closes: #2296.
