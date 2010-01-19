@@ -1,3 +1,7 @@
+Version 0.3.0~dev
+
+	* Add method to get the list of timeshifted input streams, refs: #2256.
+
 Version 0.2.2 Released on 2009/09/11
 
 	* Updated default sl2d configuration, refs: #2246.
