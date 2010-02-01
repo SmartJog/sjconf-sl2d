@@ -61,6 +61,10 @@ This is not a mandatory option. If not given, set to "yes" by default.
 Section **sl2d:source:** and **sl2d:target:** need a **url** parameter which is
 a fully qualified URL, even for local path.
 
+Arguments and values can be appended to the **url** parameter using the **url-param-1**
+and **url-value-1** parameters.
+
+
 = OPTIONS =
 
 Section **sl2d:push:** and **sl2d:target:** can hold any options supported by

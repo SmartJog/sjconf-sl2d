@@ -1,6 +1,7 @@
 Version 0.3.0~dev
 
 	* Add method to get the list of timeshifted input streams, refs: #2256.
+	* Add support for url parameters in sjconf, closes: #2245.
 
 Version 0.2.2 Released on 2009/09/11
 

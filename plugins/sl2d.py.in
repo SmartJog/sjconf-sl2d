@@ -109,7 +109,26 @@ class Plugin(sjconf.PluginWithTemplate):
                     self.ffserver_port,
                     setting.split(':')[2])
             else:
+                # main url
                 content += "%s = %s\n" % (conv, self.push_setting(setting, 'url'))
+
+                try:
+                    i = 1
+                    while True:
+                        # url parameter names
+                        key = '%s-param-%d' % (conv, i)
+                        value = self.push_setting(setting, 'url-param-%d' % i)
+                        content += "%s = %s\n" % (key, value)
+                        # url parameter values (if any)
+                        try:
+                            key = '%s-value-%d' % (conv, i)
+                            value = self.push_setting(setting, 'url-value-%d' % i)
+                            content += "%s = %s\n" % (key, value)
+                        except Plugin.MissingOptionError:
+                            pass
+                        i = i+1
+                except Plugin.MissingOptionError:
+                    pass
 
         # Extract pre/post commands if any
         # FIXME: this is ugly but should be temporary
