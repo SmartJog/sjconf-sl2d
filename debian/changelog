@@ -1,9 +1,12 @@
-sjconf-sl2d (0.3.0~dev-1) unstable; urgency=low
+sjconf-sl2d (0.3.0-1) unstable; urgency=low
 
-  * New upstream release, closes: #2256, #2245.
+  [ Rémi Cardona ]
   * Added myself to Uploaders.
 
- -- Rémi Cardona <remi.cardona@smartjog.com>  Mon, 01 Feb 2010 11:18:51 +0100
+  [ Nicolas Noirbent ]
+  * New upstream release, closes: #2256, #2245.
+
+ -- Nicolas Noirbent <nicolas.noirbent@smartjog.com>  Mon, 22 Feb 2010 15:48:23 +0100
 
 sjconf-sl2d (0.2.2-1) unstable; urgency=low
 
