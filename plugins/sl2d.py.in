@@ -130,6 +130,12 @@ class Plugin(sjconf.PluginWithTemplate):
                 except Plugin.MissingOptionError:
                     pass
 
+        try:
+            setting = self.push_setting(section_name, 'network_timeout')
+            content += "network_timeout = %s\n" % setting
+        except Plugin.MissingOptionError:
+            pass
+
         # Extract pre/post commands if any
         # FIXME: this is ugly but should be temporary
         try:
