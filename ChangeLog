@@ -1,4 +1,4 @@
-Version 0.4.0~dev
+Version 0.4.0 Released on 2010/03/02
 
 	* Add support for network_timeout option in sjconf, refs: #2989.
 
