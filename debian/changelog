@@ -1,3 +1,9 @@
+sjconf-sl2d (0.4.1~dev-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Rémi Cardona <remi.cardona@smartjog.com>  Fri, 19 Mar 2010 11:23:01 +0100
+
 sjconf-sl2d (0.4.0-1) unstable; urgency=low
 
   [ Rémi Cardona ]
