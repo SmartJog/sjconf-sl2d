@@ -1,0 +1,8 @@
+# Define user sl2d will run as
+DAEMONUSER=%(user)s
+#PIDFILE=/var/run/sl2d/sl2d.pid
+#LOGFILE=/var/log/sl2d/sl2d.log
+#CONFFILE=/etc/sl2d.conf
+#NICE=19
+# should be true or false ; anything else than 'true' is false
+ENABLED=%(enable_daemon_bool)s

@@ -13,4 +13,10 @@ do
 		sjconf --install-plugin --link /usr/lib/sjconf-sl2d/plugins/$plugin.py
 		sjconf --enable-plugin $plugin
 	fi
+
+	if [ -e /etc/sjconf-sl2d/templates/$plugin ]
+	then
+	    sjconf --install-template --link /etc/sjconf-sl2d/templates/$plugin
+	fi
+
 done

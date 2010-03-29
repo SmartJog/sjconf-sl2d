@@ -1,2 +1,4 @@
 plugins/*.py usr/lib/sjconf-sl2d/plugins
-confs/sl2d.conf /etc/sjconf-sl2d/confs
+templates/sl2d/sl2d etc/sjconf-sl2d/templates/sl2d
+confs/sl2d.conf etc/sjconf-sl2d/confs
+debian/tmp/usr/share/man

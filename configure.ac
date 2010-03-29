@@ -13,6 +13,8 @@ AC_CONFIG_FILES([Makefile
                  doc/Makefile
                  confs/Makefile
                  plugins/sl2d.py
+                 templates/Makefile
+                 templates/sl2d/Makefile
                  ])
 
 AC_OUTPUT
