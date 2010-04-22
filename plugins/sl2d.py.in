@@ -57,25 +57,25 @@ class Plugin(sjconf.PluginWithTemplate):
         self.ffserver_port     = self.ffserver_plugin.interface_get_port()
 
     def file_content(self, file_path):
-         if file_path == self.conf_files_path()[0]:
-             content = '[sl2d]\n'
+        if file_path == self.conf_files_path()[0]:
+            content = '[sl2d]\n'
 
-        # some settings should always be defined
-             for setting in ['push', 'main_loop_delay', 'respawn_min_delay']:
-                 if setting not in self.conf['sl2d']:
-                     raise Plugin.MissingOptionError('sl2d', setting)
-                 else:
-                     content += "%s = %s\n" % (setting, self.conf['sl2d'][setting])
+            # some settings should always be defined
+            for setting in ['push', 'main_loop_delay', 'respawn_min_delay']:
+                if setting not in self.conf['sl2d']:
+                    raise Plugin.MissingOptionError('sl2d', setting)
+                else:
+                    content += "%s = %s\n" % (setting, self.conf['sl2d'][setting])
 
-        # walk through push sections
-             for name in [name.strip() for name in self.conf['sl2d']['push'].split(',') if name.strip()]:
-                 content += self._sl2d_push_section(name, self.conf['sl2d:push:' + name])
+            # walk through push sections
+            for name in [name.strip() for name in self.conf['sl2d']['push'].split(',') if name.strip()]:
+                content += self._sl2d_push_section(name, self.conf['sl2d:push:' + name])
 
-             return content
+            return content
 
-         elif file_path == self.conf_files_path()[1]:
-             self.conf[self.name()]['template'] = 'templates/sl2d/sl2d'
-             return sjconf.PluginWithTemplate.file_content(self, file_path)
+        elif file_path == self.conf_files_path()[1]:
+            self.conf[self.name()]['template'] = 'templates/sl2d/sl2d'
+            return sjconf.PluginWithTemplate.file_content(self, file_path)
 
 
     def push_setting(self, section_name, setting):

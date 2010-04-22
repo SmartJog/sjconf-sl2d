@@ -12,7 +12,7 @@ then
 		sjconf --disable-plugin $plugin || true
 		sjconf --uninstall-plugin $plugin || true
 		if [ -e /etc/sjconf-sl2d/templates/$plugin ]; then
-		     sjconf --uninstall-template $plugin || true
+			sjconf --uninstall-template $plugin || true
 		fi
 		sjconf --uninstall-conf $plugin || true
 	done

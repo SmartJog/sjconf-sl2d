@@ -16,7 +16,7 @@ do
 
 	if [ -e /etc/sjconf-sl2d/templates/$plugin ]
 	then
-	    sjconf --install-template --link /etc/sjconf-sl2d/templates/$plugin
+		sjconf --install-template --link /etc/sjconf-sl2d/templates/$plugin
 	fi
 
 done
