@@ -1,13 +1,12 @@
 sjconf-sl2d (0.4.1~dev-1) unstable; urgency=low
 
   [ Rémi Cardona ]
-  * New upstream release.
   * Update packaging for Lenny.
 
   [ Mathieu Dupuy ]
   * New Upstream release, closes: #3020.
 
- -- Rémi Cardona <remi.cardona@smartjog.com>  Fri, 19 Mar 2010 11:27:42 +0100
+ -- Rémi Cardona <remi.cardona@smartjog.com>  Thu, 22 Apr 2010 15:18:58 +0200
 
 sjconf-sl2d (0.4.0-1) unstable; urgency=low
 
