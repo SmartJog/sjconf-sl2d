@@ -221,7 +221,7 @@ class Plugin(sjconf.PluginWithTemplate):
         for section_name in self.conf:
             for section_prefix in ['sl2d:custom:source:', 'sl2d:source:']:
                 if section_name.startswith(section_prefix):
-                    if 'timeshift' in self.conf[section_name]:
+                    if self.conf[section_name].get('timeshift', False):
                         input_source = section_name[len(section_prefix):]
                         ret.append(input_source)
 
