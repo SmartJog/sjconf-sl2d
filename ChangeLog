@@ -1,4 +1,4 @@
-Version 0.4.1~dev
+Version 0.4.1 Released on 2010/04/26
 
 	* Check for txt2tags in configure.
 	* Add sl2d daemon startup sjconfiguration, refs: #3020.
