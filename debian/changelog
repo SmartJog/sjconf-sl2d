@@ -1,3 +1,9 @@
+sjconf-sl2d (0.4.2~dev-1) unstable; urgency=low
+
+  * New upstream release, closes: #3078.
+
+ -- Gilles Dartiguelongue <gilles.dartiguelongue@smartjog.com>  Mon, 03 May 2010 18:55:16 +0200
+
 sjconf-sl2d (0.4.1-1) unstable; urgency=low
 
   * New Upstream release, closes: #3020, #3078.

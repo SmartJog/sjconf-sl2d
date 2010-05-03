@@ -218,10 +218,11 @@ class Plugin(sjconf.PluginWithTemplate):
 
         ret = []
 
+        # TODO: use sjconf boolean handling
         for section_name in self.conf:
             for section_prefix in ['sl2d:custom:source:', 'sl2d:source:']:
                 if section_name.startswith(section_prefix):
-                    if self.conf[section_name].get('timeshift', False):
+                    if self.conf[section_name].get('timeshift', 'off') == 'on':
                         input_source = section_name[len(section_prefix):]
                         ret.append(input_source)
 
