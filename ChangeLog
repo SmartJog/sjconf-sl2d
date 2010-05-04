@@ -1,4 +1,4 @@
-Version 0.4.2~dev
+Version 0.4.2 Released on 2010/05/04
 
 	* Fix get_timeshifted_input_streams(), closes: #3078.
 
