@@ -14,9 +14,11 @@ do
 		sjconf --enable-plugin $plugin
 	fi
 
-	if [ -e /etc/sjconf-sl2d/templates/$plugin ]
+	if [ $2 ] && dpkg --compare-versions $2 '<' 0.4.2~
 	then
-		sjconf --install-template --link /etc/sjconf-sl2d/templates/$plugin
+		if [ -e /etc/sjconf-sl2d/templates/$plugin ]
+		then
+			sjconf --install-template --link /etc/sjconf-sl2d/templates/$plugin
+		fi
 	fi
-
 done
