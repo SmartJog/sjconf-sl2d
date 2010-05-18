@@ -166,6 +166,14 @@ class Plugin(sjconf.PluginWithTemplate):
             # No postcommand, this is not fatal
             pass
 
+        # get input stream format option
+        name = self.push_setting(section_name, "source")
+        if not name.startswith("ffserver"):
+            section = self.conf[name]
+            for (key, value) in section.iteritems():
+                if (key.startswith("input_") and value.strip() != ""):
+                    content += "%s = %s\n" % (key, value)
+
         if transcode == 'none':
             content += "video_codec = copy\naudio_codec = copy\nvideo_copy_timestamps = " + video_copy_timestamps + "\n"
             return content
@@ -206,7 +214,7 @@ class Plugin(sjconf.PluginWithTemplate):
         for (key, value) in section.iteritems():
             if key == 'url' or key in already_set_keys:
                 continue
-            elif key.startswith('precommand') or key.startswith('postcommand'):
+            elif key.startswith('precommand') or key.startswith('postcommand') or key.startswith('input_'):
                 continue
             else:
                 content += "%s = %s\n" % (key, value)
