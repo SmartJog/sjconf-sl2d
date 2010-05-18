@@ -1,8 +1,12 @@
-sjconf-sl2d (0.4.2-2~dev) unstable; urgency=low
+sjconf-sl2d (0.4.3~dev-1) unstable; urgency=low
 
+  [ Gilles Dartiguelongue ]
   * Fix postinst to install templates on upgrades only.
 
- -- Gilles Dartiguelongue <gilles.dartiguelongue@smartjog.com>  Wed, 05 May 2010 14:29:21 +0200
+  [ Mathieu Dupuy ]
+  * New upstream release, closes: #3094.
+
+ -- Mathieu Dupuy <mathieu.dupuy@smartjog.com>  Tue, 18 May 2010 15:21:06 +0200
 
 sjconf-sl2d (0.4.2-1) unstable; urgency=low
 

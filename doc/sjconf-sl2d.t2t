@@ -25,6 +25,10 @@ Section **sl2d** can hold any of the following options:
 :    **push**, **main_loop_delay**, **respawn_min_delay**.
 See **sl2d**(8) man page for a description of these options.
 
+:    **enable_daemon**
+Whether to enable or not the sl2d daemon. Can be **true** or **false**.
+Everything other than **true** is will be interpreted as **false**.
+
 
 Section **sl2d:push:** needs the following options:
 
