@@ -3,6 +3,7 @@ Version 0.4.3~dev
 	* Document that sl2d startup can be sjconfed, closes #3094.
 	* Document that sl2d user can be sjconfed, closes #3094.
 	* Add input parameters support, closes: #3168.
+	* Add extra_params parameters support, closes: #2056.
 
 Version 0.4.2 Released on 2010/05/04
 

@@ -172,6 +172,13 @@ class Plugin(sjconf.PluginWithTemplate):
                 if (key.startswith("input_") and value.strip() != ""):
                     content += "%s = %s\n" % (key, value)
 
+        try:
+            setting = self.push_setting(section_name, 'extra_params')
+            content += "%s = %s\n" % ('extra_params', setting)
+        except Plugin.MissingOptionError:
+            # No extra-param, this is not fatal
+            pass
+
         if transcode == 'none':
             content += "video_codec = copy\naudio_codec = copy\nvideo_copy_timestamps = " + video_copy_timestamps + "\n"
             return content
