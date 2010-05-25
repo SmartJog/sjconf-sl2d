@@ -29,6 +29,9 @@ See **sl2d**(8) man page for a description of these options.
 Whether to enable or not the sl2d daemon. Can be **true** or **false**.
 Everything other than **true** is will be interpreted as **false**.
 
+:    **user**
+User the sl2d daemon will run as.
+
 
 Section **sl2d:push:** needs the following options:
 
