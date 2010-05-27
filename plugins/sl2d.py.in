@@ -6,8 +6,6 @@ class Plugin(sjconf.PluginWithTemplate):
 
     VERSION = '@PACKAGE_VERSION@'
 
-    SUBSECTION = [ 'source', 'target', 'push' ]
-
     class Error(sjconf.Plugin.Error):
         pass
 
