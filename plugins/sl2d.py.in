@@ -176,7 +176,14 @@ class Plugin(sjconf.PluginWithTemplate):
             setting = self.push_setting(section_name, 'extra_params')
             content += "%s = %s\n" % ('extra_params', setting)
         except Plugin.MissingOptionError:
-            # No extra-param, this is not fatal
+            # No extra_param, this is not fatal
+            pass
+
+        try:
+            setting = self.push_setting(section_name, 'input_extra_params')
+            content += "%s = %s\n" % ('input_extra_params', setting)
+        except Plugin.MissingOptionError:
+            # No input_extra_param, this is not fatal
             pass
 
         if transcode == 'none':

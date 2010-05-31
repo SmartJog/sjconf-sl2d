@@ -63,6 +63,9 @@ are of the form **precommand-[0-9]+** and **postcommand-[0-9]+**.
 Section **sld2:push:** can hold an optional parameter to add at the end of the command. This option
 is of the form **extra_params**.
 
+Section **sld2:push:** can hold an optional parameter to add before input stream in command. This option
+is of the form **input_extra_params**.
+
 :    **video_copy_timestamps** = //yes//
 Copy timestamps from input to output. This option is taken into account only when **transcode = none**.
 This is not a mandatory option. If not given, set to "yes" by default.
