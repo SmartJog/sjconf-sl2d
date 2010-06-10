@@ -1,3 +1,7 @@
+Version 0.4.5~dev
+
+	* Fix documentation, closes: #3257.
+
 Version 0.4.4 Released on 2010/07/15
 
 	* Fix input parameter support loop code to not overwrite function
