@@ -1,4 +1,4 @@
-Version 0.4.3~dev
+Version 0.4.3 Released on 2010/07/01
 
 	* Document that sl2d startup can be sjconfed, closes: #3094.
 	* Document that sl2d user can be sjconfed, closes: #3094.
