@@ -1,3 +1,8 @@
+Version 0.4.4~dev
+
+	* Fix input parameter support loop code to not overwrite function
+	  parameter, closes: #3331.
+
 Version 0.4.3 Released on 2010/07/01
 
 	* Document that sl2d startup can be sjconfed, closes: #3094.

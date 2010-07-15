@@ -167,8 +167,8 @@ class Plugin(sjconf.PluginWithTemplate):
         # get input stream format option
         name = self.push_setting(section_name, "source")
         if not name.startswith("ffserver"):
-            section = self.conf[name]
-            for (key, value) in section.iteritems():
+            source_section = self.conf[name]
+            for (key, value) in source_section.iteritems():
                 if (key.startswith("input_") and value.strip() != ""):
                     content += "%s = %s\n" % (key, value)
 
