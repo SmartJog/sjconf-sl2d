@@ -1,3 +1,11 @@
+sjconf-sl2d (0.4.5-2~dev) unstable; urgency=low
+
+  * Add myself to Uploaders.
+  * Update debian/control Build-Depends.
+  * Update debian/compat version.
+
+ -- Laurent Defert <laurent.defert@smartjog.com>  Thu, 25 Aug 2011 15:55:05 +0200
+
 sjconf-sl2d (0.4.5-1) unstable; urgency=low
 
   * New upstream release, closes: #3257.
