@@ -1,4 +1,4 @@
-sjconf-sl2d (0.4.5-2~dev) unstable; urgency=low
+sjconf-sl2d (0.4.5-2) unstable; urgency=low
 
   * Add myself to Uploaders.
   * Update debian/control Build-Depends.
