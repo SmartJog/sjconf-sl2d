@@ -5,20 +5,19 @@ set -e
 
 PLUGINS="sl2d"
 
-for plugin in $PLUGINS
-do
-	if ! sjconf --list-plugins | grep "^Plugin $plugin$" > /dev/null
-	then
-		sjconf --install-conf --link /etc/sjconf-sl2d/confs/$plugin.conf
-		sjconf --install-plugin --link /usr/lib/sjconf-sl2d/plugins/$plugin.py
-		sjconf --enable-plugin $plugin
-	fi
-
-	if [ $2 ] && dpkg --compare-versions $2 '<' 0.4.2~
-	then
-		if [ -e /etc/sjconf-sl2d/templates/$plugin ]
-		then
-			sjconf --install-template --link /etc/sjconf-sl2d/templates/$plugin
-		fi
-	fi
-done
+if [ "$1" = "configure" ]
+then
+    for plugin in $PLUGINS
+    do
+        if ! sjconf --list-plugins | grep "^Plugin $plugin$" > /dev/null
+        then
+            sjconf --install-conf --link /etc/sjconf-sl2d/confs/$plugin.conf
+            sjconf --install-plugin --link /usr/lib/sjconf-sl2d/plugins/$plugin.py
+            if [ -e /etc/sjconf-sl2d/templates/$plugin ]
+            then
+                sjconf --install-template --link /etc/sjconf-sl2d/templates/$plugin
+            fi
+            sjconf --enable-plugin $plugin
+        fi
+    done
+fi
