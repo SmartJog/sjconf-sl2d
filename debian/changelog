@@ -1,8 +1,9 @@
 sjconf-sl2d (0.4.5-3~dev) unstable; urgency=low
 
   * Fix postinst code to run on configure only.
+  * Switch to dpkg-source 3.0 (quilt) format.
 
- -- Gilles Dartiguelongue <gilles.dartiguelongue@smartjog.com>  Mon, 12 Mar 2012 17:42:57 +0100
+ -- Gilles Dartiguelongue <gilles.dartiguelongue@smartjog.com>  Mon, 12 Mar 2012 17:43:38 +0100
 
 sjconf-sl2d (0.4.5-2) unstable; urgency=low
 
