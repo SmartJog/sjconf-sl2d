@@ -1,3 +1,7 @@
+Version 0.4.6~dev
+
+	* Add license information in COPYING.
+
 Version 0.4.5 Released on 2010/08/23
 
 	* Fix documentation, closes: #3257.
